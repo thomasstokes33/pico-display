@@ -19,7 +19,7 @@ import sys
 import select
 
 # Setting up the display
-display = PicoGraphics(display = DISPLAY_PICO_DISPLAY, pen_type = PEN_RGB332, rotate = 0)
+display = PicoGraphics(display = DISPLAY_PICO_DISPLAY, pen_type = PEN_RGB332, rotate = 90)
 display.set_font("bitmap8")
 
 # Setting up colours
@@ -63,6 +63,9 @@ def readSysInfo(info):
     This is done in order to ensure that, in case of a message send to the Serial Port not reaching it's target, the system doesn't get blocked waiting for an input that never comes.
     Afterwards, return the SysInfo object (that's also passed as a parameter) so the message can be sent
     '''
+    line =sys.stdin.readline()
+    print(line)
+
     
 #Creating the initial object
 info = SysInfo()
@@ -70,6 +73,6 @@ info = SysInfo()
 while True:
     clear()
     display.set_pen(WHITE) # Sets the colour of the text
-    display.text(str(info), 10, 10, 240, 3) # Displays the text
+    display.text(str(info), 10, 10, 240, 3) # Displays the text: text, x, y, wrap length, scale          text, x, y, wrap length, scale,angle,spacing
     display.update() # Updates the display
     info = readSysInfo(info) # Reads the data for the system
