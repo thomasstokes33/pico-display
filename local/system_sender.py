@@ -1,6 +1,6 @@
 '''
 Author1: Alexandru Constantin
-Author2: Thomas
+Author2: Thomas Stokes
 
 Date: April 2023
 
