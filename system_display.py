@@ -63,9 +63,14 @@ def readSysInfo(info):
     This is done in order to ensure that, in case of a message send to the Serial Port not reaching it's target, the system doesn't get blocked waiting for an input that never comes.
     Afterwards, return the SysInfo object (that's also passed as a parameter) so the message can be sent
     '''
-    line =sys.stdin.readline()
-    print(line)
-
+    
+    recv, a,b =select.select([sys.stdin],[],[],3)
+    if recv:
+        items=sys.stdin.readline().strip().split()
+        info.ram=items[0]
+        info.cpu=items[1]
+    
+    return info
     
 #Creating the initial object
 info = SysInfo()
@@ -76,3 +81,4 @@ while True:
     display.text(str(info), 10, 10, 240, 3) # Displays the text: text, x, y, wrap length, scale          text, x, y, wrap length, scale,angle,spacing
     display.update() # Updates the display
     info = readSysInfo(info) # Reads the data for the system
+

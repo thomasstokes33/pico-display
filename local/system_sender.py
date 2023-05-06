@@ -17,8 +17,8 @@ import time
 debug = True
 
 # Connecting to the Pico through serial
-s = s.Serial("COM5", 9600) # Note: Depending on OS, there are different ways to find the serial port of the pico, check your OS' documentation. 
-#I checked the device manager and ports. the second number is the baud rate: the default is 115200 but I changed it and it worked.
+s = s.Serial("/dev/ttyACM0", 9600) # Note: Depending on OS, there are different ways to find the serial port of the pico, check your OS' documentation. 
+#I checked the device manager and ports, on windows, which was COM5. the second number is the baud rate: the default is 115200 but I changed it and it worked.
 
 # Printing a debug message
 if debug:
